@@ -1,5 +1,15 @@
-import './App.css';
+import { useState } from 'react';
+import { Task } from './types';
+import ToDoInputForm from './ToDoInputForm';
+import TodoList from './ToDoList';
 
 export default function App() {
-  return <div className="app">code here</div>;
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  return (
+    <div className="app">
+      <ToDoInputForm setTasks={setTasks} />
+      <TodoList tasks={tasks} />
+    </div>
+  );
 }
