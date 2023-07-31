@@ -9,17 +9,15 @@ function TodoInputForm({
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
-  };
+  }
 
-  const handleDescriptionChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  function handleDescriptionChange(event: React.ChangeEvent<HTMLInputElement>) {
     setDescription(event.target.value);
-  };
+  }
 
-  const handleAddTask = () => {
+  function handleAddTask() {
     const newTask: Task = {
       id: Date.now(),
       name,
@@ -31,9 +29,9 @@ function TodoInputForm({
     // Reset the input fields after adding the task
     setName('');
     setDescription('');
-  };
+  }
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full max-w-2xl mx-auto">
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold mb-4">My To-Do List</h2>
         <div className="flex flex-wrap">
