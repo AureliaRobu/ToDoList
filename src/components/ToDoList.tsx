@@ -4,9 +4,11 @@ import { Task } from './types';
 function TodoList({
   tasks,
   onDeleteTask,
+  onCompleteTask,
 }: {
   tasks: Task[];
   onDeleteTask: (id: number) => void;
+  onCompleteTask: (id: number) => void;
 }) {
   return (
     <div className="w-full max-w-2xl mx-auto my-1.5">
@@ -21,7 +23,12 @@ function TodoList({
           </thead>
           <tbody>
             {tasks.map((task) => (
-              <Tasky task={task} key={task.id} onDeleteTask={onDeleteTask} />
+              <Tasky
+                task={task}
+                key={task.id}
+                onDeleteTask={onDeleteTask}
+                onCompleteTask={onCompleteTask}
+              />
             ))}
           </tbody>
         </table>

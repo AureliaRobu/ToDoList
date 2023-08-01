@@ -22,6 +22,7 @@ function TodoInputForm({
       id: Date.now(),
       name,
       description,
+      status: 'new',
     };
 
     setTasks((prevTasks: Task[]) => [...prevTasks, newTask]);
@@ -68,7 +69,7 @@ function TodoInputForm({
           <div className="w-full">
             <button
               type="button"
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+              className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
               onClick={handleAddTask}
             >
               Add
