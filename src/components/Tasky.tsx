@@ -12,9 +12,10 @@ export default function Tasky({
   const isTaskCompleted = task.status === 'completed';
   return (
     <tr className={isTaskCompleted ? 'line-through text-gray-400' : ''}>
-      <td className="px-4 py-2 border-b">{task.name}</td>
-      <td className="px-4 py-2 border-b">{task.description}</td>
-      <td className="px-4 py-2 border-b text-right">
+      <td className="px-4 py-2 border-b w-1/6">{task.name}</td>
+      <td className="px-4 py-2 border-b w-1/2">{task.description}</td>
+      <td className="px-4 py-2 border-b w-1/6">{task.priority}</td>
+      <td className="px-4 py-2 border-b text-right w-1/6">
         {!isTaskCompleted && (
           <button
             type="button"

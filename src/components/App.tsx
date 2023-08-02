@@ -28,7 +28,7 @@ export default function App() {
   }
 
   return (
-    <div className="app">
+    <div className="w-3/4 mx-auto">
       <ToDoInputForm setTasks={setTasks} />
       <TodoList
         tasks={sortTasksWithCompletedLast(tasks)}

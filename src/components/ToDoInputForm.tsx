@@ -8,6 +8,7 @@ function TodoInputForm({
 }) {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const [priority, setPriority] = useState<number>(1);
 
   function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
@@ -17,12 +18,18 @@ function TodoInputForm({
     setDescription(event.target.value);
   }
 
+  function handlePriorityChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    setPriority(Number(event.target.value));
+  }
+
   function handleAddTask() {
+    if (!name || !description) return;
     const newTask: Task = {
       id: Date.now(),
       name,
       description,
       status: 'new',
+      priority,
     };
 
     setTasks((prevTasks: Task[]) => [...prevTasks, newTask]);
@@ -32,11 +39,11 @@ function TodoInputForm({
     setDescription('');
   }
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full mx-auto">
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold mb-4">My To-Do List</h2>
         <div className="flex flex-wrap">
-          <div className="w-full md:w-1/2 pr-4 mb-4">
+          <div className="w-full md:w-1/4 pr-4 mb-4">
             <label
               htmlFor="name"
               className="block text-gray-700 font-semibold mb-2"
@@ -66,7 +73,25 @@ function TodoInputForm({
               />
             </label>
           </div>
-          <div className="w-full">
+          <div className="w-full md:w-1/4 pl-4 mb-4">
+            <label
+              htmlFor="priority"
+              className="block text-gray-700 font-semibold mb-2"
+            >
+              Priority
+              <select
+                id="priority"
+                value={priority}
+                onChange={handlePriorityChange}
+                className="w-full flex-shrink px-4 py-2 mr-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </label>
+          </div>
+          <div className="w-full text-right">
             <button
               type="button"
               className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
