@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import { Task } from './types';
 
+interface TodoInputFormProps {
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  handleSort: (sortKey: 'name' | 'priority') => void; // Define the type of handleSort
+  sortBy: 'name' | 'priority' | '';
+  sortAsc: boolean;
+}
+
 function TodoInputForm({
   setTasks,
-}: {
-  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
-}) {
+  handleSort,
+  sortBy,
+  sortAsc,
+}: TodoInputFormProps) {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [priority, setPriority] = useState<number>(1);
@@ -92,6 +100,24 @@ function TodoInputForm({
             </label>
           </div>
           <div className="w-full text-right">
+            <button
+              type="button"
+              onClick={() => handleSort('name')}
+              className={`mr-4 ${
+                sortBy === 'name' ? 'bg-gray-400' : 'bg-gray-300'
+              } hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg`}
+            >
+              Sort by Name {sortBy === 'name' && sortAsc ? '↑' : '↓'}
+            </button>
+            <button
+              type="button"
+              onClick={() => handleSort('priority')}
+              className={`mr-4 ${
+                sortBy === 'priority' ? 'bg-gray-400' : 'bg-gray-300'
+              } hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg`}
+            >
+              Sort by Priority {sortBy === 'priority' && sortAsc ? '↑' : '↓'}
+            </button>
             <button
               type="button"
               className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
