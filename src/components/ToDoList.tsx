@@ -10,6 +10,10 @@ function TodoList({
   onDeleteTask: (id: number) => void;
   onCompleteTask: (id: number) => void;
 }) {
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter(
+    (task) => task.status === 'completed'
+  ).length;
   return (
     <div className="w-full mx-auto my-1.5">
       <div className="bg-white rounded-lg shadow-md p-6">
@@ -39,6 +43,9 @@ function TodoList({
             ))}
           </tbody>
         </table>
+        <h2 className="text-2xl font-bold my-4">My Tasks</h2>
+        <p>Total Tasks: {totalTasks}</p>
+        <p>Completed Tasks: {completedTasks}</p>
       </div>
     </div>
   );
